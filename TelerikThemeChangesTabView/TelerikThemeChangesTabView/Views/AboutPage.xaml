@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TelerikThemeChangesTabView.Views.AboutPage"
+             xmlns:vm="clr-namespace:TelerikThemeChangesTabView.ViewModels" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input" 
+             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackground}}" 
+             xmlns:customControls="clr-namespace:CMSMechanicalMobile.Controls"
+             xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="PmChecklistTemplate">
+            <telerikListView:ListViewTemplateCell>
+                <telerikListView:ListViewTemplateCell.View>
+                    <StackLayout BackgroundColor="White">
+                        <BoxView Margin="0,10,0,0" HorizontalOptions="Fill" IsVisible="{Binding BoldStyle}" VerticalOptions="CenterAndExpand" />
+                        <Label Padding="12, 0, 12, 0" Text="{Binding Description}" >
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Value="false">
+                                    <Setter Property="FontAttributes" Value="None" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Value="true">
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <pcview:PancakeView Padding="12, 0, 12, 0">
+                            <telerikInput:RadSegmentedControl ClassId="{Binding Description}" SelectedIndex="{Binding Value, Mode=TwoWay}" 
+                                                          SelectionChanged="SelectionChanged">
+                                <telerikInput:RadSegmentedControl.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Poor</x:String>
+                                        <x:String>Fair</x:String>
+                                        <x:String>Good</x:String>
+                                        <x:String>NA</x:String>
+                                    </x:Array>
+                                </telerikInput:RadSegmentedControl.ItemsSource>
+                            </telerikInput:RadSegmentedControl>
+                        </pcview:PancakeView>
+                    </StackLayout>
+                </telerikListView:ListViewTemplateCell.View>
+            </telerikListView:ListViewTemplateCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Label HeightRequest="30" Padding="10, 5, 0, 5" FontAttributes="Bold" Text="PM Checklist"/>
+                <telerikDataControls:RadListView x:Name="PmChecklistSegments"
+                                                     BackgroundColor="Transparent"
+                                                     ItemsSource="{Binding CheckListData}"
+                                                     ItemTemplate="{StaticResource PmChecklistTemplate}"/>
+            </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input" 
+             xmlns:telerikDataForm="clr-namespace:Telerik.XamarinForms.Input.DataForm;assembly=Telerik.XamarinForms.Input" 
+             xmlns:telerikCommon="clr-namespace:Telerik.XamarinForms.Common;assembly=Telerik.XamarinForms.Common"
+             x:Class="TelerikThemeChangesTabView.Views.EditorSamplesPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <telerikInput:RadDataForm Source="{Binding DailyLogSummary}" x:Name="detailForm" ValidationMode="OnLostFocus" >
+                <telerikInput:RadDataForm.EditorStyle>
+                    <telerikDataForm:DataFormEditorStyle
+                                             HeaderFontSize="14"
+                                             FeedbackFontSize="12"                                                                             
+                                             NegativeFeedbackForeground="{StaticResource SystemRed}">
+                        <telerikDataForm:DataFormEditorStyle.NegativeFeedbackBackground>
+                            <telerikCommon:Background Fill="Transparent"/>
+                        </telerikDataForm:DataFormEditorStyle.NegativeFeedbackBackground>
+                    </telerikDataForm:DataFormEditorStyle>
+                </telerikInput:RadDataForm.EditorStyle>
+            </telerikInput:RadDataForm>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
