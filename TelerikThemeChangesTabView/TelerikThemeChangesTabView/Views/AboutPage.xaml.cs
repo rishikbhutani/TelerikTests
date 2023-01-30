@@ -15,7 +15,14 @@ namespace TelerikThemeChangesTabView.Views
         {
             InitializeComponent();
         }
-
+        protected override void OnAppearing()
+        {
+            if (this.BindingContext != null)
+            {
+                var model = (AboutViewModel)this.BindingContext;
+                model.BeltList = activeBeltssample;
+            }
+        }
         private async void Button_Clicked(object sender, EventArgs e)
         {
             var model = (AboutViewModel)this.BindingContext;

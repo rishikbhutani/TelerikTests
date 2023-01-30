@@ -1,21 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TelerikThemeChangesTabView.Views.AboutPage"
-             xmlns:vm="clr-namespace:TelerikThemeChangesTabView.ViewModels" 
-             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-             xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls" 
-             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input" 
-             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackground}}" 
-             xmlns:customControls="clr-namespace:CMSMechanicalMobile.Controls"
-             xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls">
+<ContentPage
+    x:Class="TelerikThemeChangesTabView.Views.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:CMSMechanicalMobile.Controls"
+    xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+    xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+    xmlns:vm="clr-namespace:TelerikThemeChangesTabView.ViewModels"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                      Light={StaticResource CardBackground}}">
     <ContentPage.Resources>
         <DataTemplate x:Key="PmChecklistTemplate">
             <telerikListView:ListViewTemplateCell>
                 <telerikListView:ListViewTemplateCell.View>
                     <StackLayout BackgroundColor="White">
-                        <BoxView Margin="0,10,0,0" HorizontalOptions="Fill" IsVisible="{Binding BoldStyle}" VerticalOptions="CenterAndExpand" />
-                        <Label Padding="12, 0, 12, 0" Text="{Binding Description}" >
+                        <BoxView
+                            Margin="0,10,0,0"
+                            HorizontalOptions="Fill"
+                            IsVisible="{Binding BoldStyle}"
+                            VerticalOptions="CenterAndExpand" />
+                        <Label Padding="12,0,12,0" Text="{Binding Description}">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label" Value="false">
                                     <Setter Property="FontAttributes" Value="None" />
@@ -25,9 +32,11 @@
                                 </DataTrigger>
                             </Label.Triggers>
                         </Label>
-                        <pcview:PancakeView Padding="12, 0, 12, 0">
-                            <telerikInput:RadSegmentedControl ClassId="{Binding Description}" SelectedIndex="{Binding Value, Mode=TwoWay}" 
-                                                          SelectionChanged="SelectionChanged">
+                        <pcview:PancakeView Padding="12,0,12,0">
+                            <telerikInput:RadSegmentedControl
+                                ClassId="{Binding Description}"
+                                SelectedIndex="{Binding Value, Mode=TwoWay}"
+                                SelectionChanged="SelectionChanged">
                                 <telerikInput:RadSegmentedControl.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>Poor</x:String>
@@ -42,15 +51,199 @@
                 </telerikListView:ListViewTemplateCell.View>
             </telerikListView:ListViewTemplateCell>
         </DataTemplate>
+        <DataTemplate x:Key="BeltsAndFiltersItemTemplate">
+            <telerikListView:ListViewTemplateCell Height="50">
+                <telerikListView:ListViewTemplateCell.View>
+                    <Grid Padding="5">
+                        <pcview:PancakeView
+                            Padding="10"
+                            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                              Light={StaticResource CardBackground}}"
+                            Border="{pcview:BorderMarkup Color={AppThemeBinding Dark={StaticResource TextColorWhite},
+                                                                                Light={StaticResource SystemGray4}},
+                                                         Thickness='2'}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="Item " />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="XYZ" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="Quantity " />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="3"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{Binding Value}" />
+                            </Grid>
+                        </pcview:PancakeView>
+                    </Grid>
+                </telerikListView:ListViewTemplateCell.View>
+            </telerikListView:ListViewTemplateCell>
+        </DataTemplate>
+        <DataTemplate x:Key="itemSwipeDeleteButtonTemplate">
+            <Grid
+                Margin="0"
+                Padding="0"
+                BackgroundColor="Transparent"
+                ColumnSpacing="0"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="70" />
+                </Grid.ColumnDefinitions>
+
+                <telerikInput:RadButton
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    Text="del"
+                    VerticalOptions="Center" />
+                <telerikInput:RadButton
+                    Grid.Column="2"
+                    BackgroundColor="Transparent"
+                    HeightRequest="20"
+                    Text="del" />
+            </Grid>
+        </DataTemplate>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Label HeightRequest="30" Padding="10, 5, 0, 5" FontAttributes="Bold" Text="PM Checklist"/>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <!--<Label HeightRequest="30" Padding="10, 5, 0, 5" FontAttributes="Bold" Text="PM Checklist"/>
                 <telerikDataControls:RadListView x:Name="PmChecklistSegments"
                                                      BackgroundColor="Transparent"
                                                      ItemsSource="{Binding CheckListData}"
-                                                     ItemTemplate="{StaticResource PmChecklistTemplate}"/>
+                                                     ItemTemplate="{StaticResource PmChecklistTemplate}"/>-->
+                    <Grid VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="10,0,0,0"
+                            FontAttributes="Bold"
+                            Text="fix needed" />
+
+                        <telerikInput:RadButton
+                            x:Name="btnAddBelt"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Command="{Binding OpenBeltsPopUpCommand}"
+                            CommandParameter="{x:Reference btnAddBelt}"
+                            CornerRadius="15"
+                            HorizontalOptions="EndAndExpand"
+                            Text="Add"
+                            VerticalOptions="EndAndExpand" />
+                        <telerikDataControls:RadListView
+                            x:Name="activeBelts"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="Transparent"
+                            IsItemSwipeEnabled="True"
+                            ItemSwipeContentTemplate="{StaticResource itemSwipeDeleteButtonTemplate}"
+                            ItemTemplate="{StaticResource BeltsAndFiltersItemTemplate}"
+                            ItemsSource="{Binding CheckListData}"
+                            SwipeOffset="70, 0, 70, 0"
+                            SwipeThreshold="10" />
+
+                    </Grid>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <!--<Label HeightRequest="30" Padding="10, 5, 0, 5" FontAttributes="Bold" Text="PM Checklist"/>
+                <telerikDataControls:RadListView x:Name="PmChecklistSegments"
+                                                     BackgroundColor="Transparent"
+                                                     ItemsSource="{Binding CheckListData}"
+                                                     ItemTemplate="{StaticResource PmChecklistTemplate}"/>-->
+                    <Grid VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="10,0,0,0"
+                            FontAttributes="Bold"
+                            Text="work around" />
+
+                        <telerikInput:RadButton
+                            x:Name="btnAddBeltsample"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Command="{Binding OpenBeltsPopUpCommand}"
+                            CommandParameter="{x:Reference btnAddBelt}"
+                            CornerRadius="15"
+                            HorizontalOptions="EndAndExpand"
+                            Text="Add"
+                            VerticalOptions="EndAndExpand" />
+                        <telerikDataControls:RadListView
+                            x:Name="activeBeltssample"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="Transparent"
+                            IsItemSwipeEnabled="True"
+                            ItemSwipeContentTemplate="{StaticResource itemSwipeDeleteButtonTemplate}"
+                            ItemTemplate="{StaticResource BeltsAndFiltersItemTemplate}"
+                            ItemsSource="{Binding CheckListData}"
+                            MinimumHeightRequest="50"
+                            SwipeOffset="70, 0, 70, 0"
+                            SwipeThreshold="10" />
+
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Padding="10">
+                    <Label Text="Cabinet" />
+                    <telerikInput:RadSegmentedControl x:Name="cabinetRating" ClassId="cabinetRating">
+                        <telerikInput:RadSegmentedControl.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>1</x:String>
+                                <x:String>3</x:String>
+                            </x:Array>
+                        </telerikInput:RadSegmentedControl.ItemsSource>
+                    </telerikInput:RadSegmentedControl>
+
+                    <Label Text="Electrical" />
+                    <telerikInput:RadSegmentedControl x:Name="electricalRating" ClassId="electricalRating">
+                        <telerikInput:RadSegmentedControl.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>1</x:String>
+                                <x:String>3</x:String>
+                            </x:Array>
+                        </telerikInput:RadSegmentedControl.ItemsSource>
+                    </telerikInput:RadSegmentedControl>
+
+
+                </StackLayout>
             </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 
 </ContentPage>
